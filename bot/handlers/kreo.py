@@ -1,14 +1,9 @@
 import logging
-from aiogram import types
 from keyboards.inline import inline_verify
-from token_api import CHAT_ID
-from aiogram.types import CallbackQuery
-from aiogram.types import Message, Update
+from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from utils.statesform import StepsForm
 from aiogram.utils.markdown import hbold
-from bot_instance import bot
-from keyboards.reply import get_reply_keyboard
 
 
 async def get_form(message: Message, state: FSMContext):

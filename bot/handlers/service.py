@@ -1,12 +1,9 @@
 import logging
-from aiogram.types import CallbackQuery, Message, Update
+from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from utils.statesform import StepsForm
-from bot_instance import bot
 from aiogram.utils.markdown import hbold
 from keyboards.inline import inline_verify
-from keyboards.reply import get_reply_keyboard
-from token_api import CHAT_ID
 
 
 async def get_services(message: Message, state: FSMContext):
