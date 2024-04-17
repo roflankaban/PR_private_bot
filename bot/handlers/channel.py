@@ -1,5 +1,6 @@
 from aiogram.types import CallbackQuery, Message, Update
 from aiogram.fsm.context import FSMContext
+from token_api import CHAT_ID
 from utils.statesform import StepsForm
 from bot_instance import bot
 from aiogram.utils.markdown import hbold
@@ -45,5 +46,5 @@ async def verify_channel(call: CallbackQuery, state: FSMContext):
                  f'Ваша тематика: {thematic}\r\n' \
                  f'Термін виконання: {time}\r\n' 
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
-    await bot.send_message(chat_id=-1002054762566, text=data_order)
+    await bot.send_message(chat_id=CHAT_ID, text=data_order)
     await state.clear()

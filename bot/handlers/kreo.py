@@ -1,4 +1,5 @@
 from keyboards.inline import inline_verify
+from token_api import CHAT_ID
 from aiogram.types import CallbackQuery
 from aiogram.types import Message, Update
 from aiogram.fsm.context import FSMContext
@@ -71,5 +72,5 @@ async def verify(call: CallbackQuery, state: FSMContext):
                  f'Пост: {post_type}\r\n' \
                  f'Інше: {others}\r\n'
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
-    await bot.send_message(chat_id=-1002054762566, text=data_order)
+    await bot.send_message(chat_id=CHAT_ID, text=data_order)
     await   state.clear()

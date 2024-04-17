@@ -1,5 +1,6 @@
 from aiogram.types import CallbackQuery, Message, Update
 from aiogram.fsm.context import FSMContext
+from token_api import CHAT_ID
 from utils.statesform import StepsForm
 from bot_instance import bot
 from aiogram.utils.markdown import hbold
@@ -31,7 +32,6 @@ async def get_link(message: Message, state: FSMContext):
                  f'Посилання на ваш канал: {link}\r\n' 
     await message.answer(data_order, reply_markup=inline_verify)
     await state.set_state(StepsForm.VERIFIED_BUY)
-    await  edit_message_reply_markup(chat_id=message.chat.id, reply_markup=None)
     
 
 async def verify_buy(call: CallbackQuery, state: FSMContext):
@@ -45,5 +45,5 @@ async def verify_buy(call: CallbackQuery, state: FSMContext):
                  f'Ваш рекламний бюджет: {budget}\r\n' \
                  f'Посилання на ваш канал: {link}\r\n' 
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
-    await bot.send_message(chat_id=-1002054762566, text=data_order)
+    await bot.send_message(chat_id=CHAT_ID, text=data_order)
     await state.clear()

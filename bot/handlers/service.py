@@ -5,6 +5,7 @@ from bot_instance import bot
 from aiogram.utils.markdown import hbold
 from keyboards.inline import inline_verify
 from keyboards.reply import get_reply_keyboard
+from token_api import CHAT_ID
 
 
 async def get_services(message: Message, state: FSMContext):
@@ -44,5 +45,5 @@ async def verify_services(call: CallbackQuery, state: FSMContext,):
                  f'Ви надаєте послуги: {services}\r\n' \
                  f'Ваша більш детальна інформація: {services_type}\r\n' 
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
-    await bot.send_message(chat_id=-1002054762566, text=data_order)
+    await bot.send_message(chat_id=CHAT_ID, text=data_order)
     await state.clear()
