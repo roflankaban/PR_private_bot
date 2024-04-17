@@ -52,7 +52,6 @@ async def get_others(message: Message, state: FSMContext):
                  f'Інше: {others}\r\n'
     await message.answer(data_order, reply_markup=inline_verify)
     await state.set_state(StepsForm.VERIFIED)
-    await bot.edit_message_reply_markup()
     
    
     

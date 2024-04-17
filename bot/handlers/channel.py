@@ -32,7 +32,6 @@ async def get_time(message: Message, state: FSMContext):
                  f'Термін виконання: {time}\r\n' 
     await message.answer(data_order, reply_markup=inline_verify)
     await state.set_state(StepsForm.VERIFIED_CHANNEL)
-    await bot.edit_message_reply_markup()
     
 
 async def verify_channel(call: CallbackQuery, state: FSMContext):
