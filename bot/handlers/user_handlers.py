@@ -4,13 +4,13 @@ from aiogram import types
 
 async def get_iluha(message: types.Message) -> None:
     await message.answer_photo(
-        types.FSInputFile(path="bot/images/iluha.jpg"), caption="Цей чорт ніхуя не робить"
+        types.FSInputFile(path="images/iluha.jpg"), caption="Цей чорт ніхуя не робить"
     )
     
 
 async def get_furry(message: types.Message) -> None:
     await message.answer_photo(
-        types.FSInputFile(path="bot/images/furry.jfif"), caption="https://t.me/AnitiHentai"
+        types.FSInputFile(path="images/furry.jfif"), caption="https://t.me/AnitiHentai"
     )
 
 
