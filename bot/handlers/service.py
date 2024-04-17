@@ -1,3 +1,4 @@
+import logging
 from aiogram.types import CallbackQuery, Message, Update
 from aiogram.fsm.context import FSMContext
 from utils.statesform import StepsForm
@@ -31,6 +32,7 @@ async def get_details(message: Message, state: FSMContext):
                  f'Ви надаєте послуги: {services}\r\n' \
                  f'Ваша більш детальна інформація: {services_type}\r\n' 
     await message.answer(data_order, reply_markup=inline_verify)
+    logging.info('Відбулося замовлення рекламу сервісу')
     await state.set_state(StepsForm.VERIFIED_SERVICES)
     
 

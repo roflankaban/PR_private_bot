@@ -1,3 +1,4 @@
+import logging
 from aiogram.types import CallbackQuery, Message, Update
 from aiogram.fsm.context import FSMContext
 from token_api import CHAT_ID
@@ -31,6 +32,7 @@ async def get_time(message: Message, state: FSMContext):
                  f'Ваша тематика: {thematic}\r\n' \
                  f'Термін виконання: {time}\r\n' 
     await message.answer(data_order, reply_markup=inline_verify)
+    logging.info('Відбулося замовлення канала під ключ')
     await state.set_state(StepsForm.VERIFIED_CHANNEL)
     
 
