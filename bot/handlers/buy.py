@@ -35,18 +35,3 @@ async def get_link(message: Message, state: FSMContext):
     await message.answer(data_order, reply_markup=inline_verify)
     logging.info('Відбулося замовлення закупки реклами')
     await state.set_state(StepsForm.VERIFIED_BUY)
-    
-
-async def verify_buy(call: CallbackQuery, state: FSMContext):
-    message = call.message  # Отримуємо повідомлення, пов'язане з цим запитом
-    context_data = await state.get_data()
-    username = context_data.get('username')
-    budget = context_data.get('budget')
-    link = context_data.get('link')
-    data_order = f'@{username}\r\n'\
-                 f'ЗАКУП РЕКЛАМИ\r\n'\
-                 f'Ваш рекламний бюджет: {budget}\r\n' \
-                 f'Посилання на ваш канал: {link}\r\n' 
-    await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
-    await bot.send_message(chat_id=-1002054762566, text=data_order)
-    await state.clear()

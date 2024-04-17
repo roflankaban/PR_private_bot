@@ -1,14 +1,13 @@
 import asyncio 
 from aiogram import Dispatcher,F
-from aiogram.filters import CommandStart, Command
-from handlers.buy import get_budget, get_buy, get_link, verify_buy
 from utils.statesform import StepsForm
 from bot_instance import bot
 from handlers.user_handlers import get_start
-from handlers.kreo import get_audience, get_form, get_others, get_theme,get_post_type, verify
-from handlers.buy import get_buy,get_budget,get_link,verify_buy
-from handlers.channel import get_channel, get_thematic,get_time,verify_channel
-from handlers.service import get_services,get_details,get_services_type, verify_services
+from handlers.kreo import get_audience, get_form, get_others, get_theme,get_post_type
+from handlers.buy import get_buy,get_budget,get_link
+from handlers.channel import get_channel, get_thematic,get_time
+from handlers.service import get_services,get_details,get_services_type
+from handlers.callback import verify_buy,verify_services,verify,verify_channel,notverify
 
 async def main() -> None:
     """The main function which will execute our event loop and start polling."""
@@ -37,10 +36,12 @@ async def main() -> None:
     dp.message.register(get_details,StepsForm.GET_SERVICES_TYPES)
 
     
-    dp.callback_query.register(verify,StepsForm.VERIFIED)
-    dp.callback_query.register(verify_buy,StepsForm.VERIFIED_BUY)
-    dp.callback_query.register(verify_channel,StepsForm.VERIFIED_CHANNEL)
-    dp.callback_query.register(verify_services,StepsForm.VERIFIED_SERVICES)
+    dp.callback_query.register(verify,F.data.startswith('1'),StepsForm.VERIFIED)
+    dp.callback_query.register(verify_buy,F.data.startswith('1'),StepsForm.VERIFIED_BUY)
+    dp.callback_query.register(verify_channel,F.data.startswith('1'),StepsForm.VERIFIED_CHANNEL)
+    dp.callback_query.register(verify_services,F.data.startswith('1'),StepsForm.VERIFIED_SERVICES)
+    
+    dp.callback_query.register(notverify,F.data.startswith('2'))
     
     
     await dp.start_polling(bot)

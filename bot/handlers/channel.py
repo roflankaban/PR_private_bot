@@ -34,18 +34,3 @@ async def get_time(message: Message, state: FSMContext):
     await message.answer(data_order, reply_markup=inline_verify)
     logging.info('Відбулося замовлення канала під ключ')
     await state.set_state(StepsForm.VERIFIED_CHANNEL)
-    
-
-async def verify_channel(call: CallbackQuery, state: FSMContext):
-    message = call.message  # Отримуємо повідомлення, пов'язане з цим запитом
-    context_data = await state.get_data()
-    username = context_data.get('username')
-    thematic = context_data.get('thematic')
-    time = context_data.get('time')
-    data_order = f'@{username}\r\n'\
-                 f'КАНАЛ ПІД КЛЮЧ\r\n'\
-                 f'Ваша тематика: {thematic}\r\n' \
-                 f'Термін виконання: {time}\r\n' 
-    await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
-    await bot.send_message(chat_id=CHAT_ID, text=data_order)
-    await state.clear()
