@@ -3,6 +3,7 @@ from aiogram.types import CallbackQuery
 from token_api import CHAT_ID
 from keyboards.reply import get_reply_keyboard
 from bot_instance import bot
+import logging
 
     
 
@@ -10,6 +11,9 @@ from bot_instance import bot
 async def notverify(call: CallbackQuery, state: FSMContext):
     message = call.message  # Отримуємо повідомлення, пов'язане з цим запитом
     await message.answer(f"Ваше замовлення видалено",reply_markup=get_reply_keyboard())
+    context_data = await state.get_data()
+    username = context_data.get('username')
+    logging.info('%s canseled order',username)
     await call.answer()
     await state.clear()
     
@@ -27,6 +31,7 @@ async def verify_buy(call: CallbackQuery, state: FSMContext):
                  f'Посилання на ваш канал: {link}\r\n' 
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
     await bot.send_message(chat_id=CHAT_ID, text=data_order)
+    logging.info('%s ordered ad buy',username)
     await call.answer()
     await state.clear()
     
@@ -45,6 +50,7 @@ async def verify_services(call: CallbackQuery, state: FSMContext,):
                  f'Ваша більш детальна інформація: {services_type}\r\n' 
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
     await bot.send_message(chat_id=CHAT_ID, text=data_order)
+    logging.info('%s service promo',username)
     await call.answer()
     await state.clear()
     
@@ -66,6 +72,7 @@ async def verify(call: CallbackQuery, state: FSMContext):
                  f'Інше: {others}\r\n'
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
     await bot.send_message(chat_id=CHAT_ID, text=data_order)
+    logging.info('%s ordered kreo',username)
     await call.answer()
     await state.clear()
     
@@ -83,5 +90,6 @@ async def verify_channel(call: CallbackQuery, state: FSMContext):
                  f'Термін виконання: {time}\r\n' 
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
     await bot.send_message(chat_id=CHAT_ID, text=data_order)
+    logging.info('%s ordered creating tg channes',username)
     await call.answer()
     await state.clear()

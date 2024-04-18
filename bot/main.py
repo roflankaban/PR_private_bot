@@ -1,4 +1,5 @@
-import asyncio 
+import asyncio
+from tabnanny import check 
 from aiogram import Dispatcher,F
 from utils.statesform import StepsForm
 from bot_instance import bot
@@ -21,7 +22,7 @@ async def main() -> None:
     dp = Dispatcher()
     dp.message.register(get_start, F.text == "/start")
     dp.message.register(get_iluha, F.text == "/iluha")
-    dp.message.register(get_furry, F.text == "/furry")
+    dp.message.register(get_furry, F.text == "/furry"|F.text =="/hentai"|F.text =="/porno"|F.text =="/horny"|F.text =="/sex"|F.text =="/loli"|F.text =="/rule34")
     dp.message.register(get_form,F.text == 'Рекламний креатив' )
     dp.message.register(get_buy,F.text == 'Закуп під ваш телеграм канал')
     dp.message.register(get_channel,F.text == 'Телеграм канал під ключ')

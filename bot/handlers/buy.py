@@ -29,5 +29,4 @@ async def get_link(message: Message, state: FSMContext):
                  f'Ваш рекламний бюджет: {budget}\r\n' \
                  f'Посилання на ваш канал: {link}\r\n' 
     await message.answer(data_order, reply_markup=inline_verify)
-    logging.info('Відбулося замовлення закупки реклами')
     await state.set_state(StepsForm.VERIFIED_BUY)

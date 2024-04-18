@@ -48,5 +48,4 @@ async def get_others(message: Message, state: FSMContext):
                  f'Пост: {post_type}\r\n' \
                  f'Інше: {others}\r\n'
     await message.answer(data_order, reply_markup=inline_verify)
-    logging.info('Відбулося замовлення крео')
     await state.set_state(StepsForm.VERIFIED)
