@@ -1,5 +1,5 @@
 from aiogram.utils.markdown import hbold
-from bot.token_api import SUB_ID
+from token_api import SUB_ID
 from keyboards.inline import startup_markup
 from keyboards.reply import get_reply_keyboard
 from aiogram import types
