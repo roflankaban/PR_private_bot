@@ -12,7 +12,7 @@ async def notverify(call: CallbackQuery, state: FSMContext):
     await message.answer(f"Ваше замовлення видалено",reply_markup=get_reply_keyboard())
     context_data = await state.get_data()
     username = context_data.get('username')
-    print('%s canseled order',username)
+    print('Canseled order by @',username)
     await call.answer()
     await state.clear()
     
@@ -30,7 +30,7 @@ async def verify_buy(call: CallbackQuery, state: FSMContext):
                  f'Посилання на ваш канал: {link}\r\n' 
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
     await bot.send_message(chat_id=CHAT_ID, text=data_order)
-    print('%s ordered ad buy',username)
+    print('Oordered AD buy for @',username)
     await call.answer()
     await state.clear()
     
@@ -49,7 +49,7 @@ async def verify_services(call: CallbackQuery, state: FSMContext,):
                  f'Ваша більш детальна інформація: {services_type}\r\n' 
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
     await bot.send_message(chat_id=CHAT_ID, text=data_order)
-    print('%s service promo',username)
+    print('Service promo for @',username)
     await call.answer()
     await state.clear()
     
@@ -71,7 +71,7 @@ async def verify(call: CallbackQuery, state: FSMContext):
                  f'Інше: {others}\r\n'
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
     await bot.send_message(chat_id=CHAT_ID, text=data_order)
-    print('%s ordered kreo',username)
+    print('Ordered kreo for @',username)
     await call.answer()
     await state.clear()
     
@@ -89,6 +89,6 @@ async def verify_channel(call: CallbackQuery, state: FSMContext):
                  f'Термін виконання: {time}\r\n' 
     await message.answer(f"Ваше замовлення підтверджено. Невдовзі з вами зв’яжеться наш персонал",reply_markup=get_reply_keyboard())
     await bot.send_message(chat_id=CHAT_ID, text=data_order)
-    print('%s ordered creating tg channes',username)
+    print('Ordered creating tg channes for @',username)
     await call.answer()
     await state.clear()
