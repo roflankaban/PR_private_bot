@@ -17,11 +17,7 @@ startup_markup = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(
             text='Favex I Media Group',
-            url='https://t.me/+0XxzoWMGnMZiNGQy',
-        ),
-        InlineKeyboardButton(
-            text='Перевірити',
-            callback_data='check',
+            url='https://t.me/+0XxzoWMGnMZiNGQy'
         )
     ]
 ])
