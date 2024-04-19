@@ -13,13 +13,13 @@ async def get_channel(message: Message, state: FSMContext):
     
 
 async def get_thematic(message: Message, state: FSMContext):
-    await message.answer(f'Ваша тематика: {message.text}\r\nТепер введіть який термін виконання роботи')
+    await message.answer(f'Ваша тематика: {message.text}\r\nТепер введіть який термін виконання замовлення')
     await state.update_data(thematic=message.text)
     await state.set_state(StepsForm.GET_TIME)
     
 
 async def get_time(message: Message, state: FSMContext):
-    await message.answer(f'Термін є тіпа за який час: {message.text}\r\nТепер термін виконання')
+    await message.answer(f'Термін виконанна замовлення: {message.text}\r\nТепер термін виконання')
     await state.update_data(time=message.text)
     context_data = await state.get_data()
     thematic = context_data.get('thematic')
