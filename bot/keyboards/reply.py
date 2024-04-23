@@ -7,7 +7,8 @@ def get_reply_keyboard():
     keyboard_builder.button(text='Закуп під ваш телеграм канал')
     keyboard_builder.button(text='Телеграм канал під ключ')
     keyboard_builder.button(text='Просування ваших послуг')
-    keyboard_builder.adjust(1,1,1,1)
+    keyboard_builder.button(text='Навчання')
+    keyboard_builder.adjust(2,2,1)
     return keyboard_builder.as_markup(resize_keyboard=True,
                                       one_time_keyboard=True,
                                       input_field_placeholder="Обери функцію"

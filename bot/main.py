@@ -3,12 +3,12 @@ from tabnanny import check
 from aiogram import Dispatcher,F
 from utils.statesform import StepsForm
 from bot_instance import bot
-from handlers.user_handlers import get_start,get_iluha,get_furry
-from handlers.kreo import get_audience, get_form, get_others, get_theme,get_post_type
+from handlers.user_handlers import get_start,get_iluha,get_furry,get_study
+from handlers.kreo import get_audience, get_form, get_others, get_theme,get_post_type 
 from handlers.buy import get_buy,get_budget,get_link
 from handlers.channel import get_channel, get_thematic,get_time
 from handlers.service import get_services,get_details,get_services_type
-from handlers.callback import verify_buy,verify_services,verify,verify_channel,notverify
+from handlers.callback import verify_buy,verify_services,verify,verify_channel,notverify,verify_buy_course,verify_kero_course
 
 import os
 
@@ -22,11 +22,12 @@ async def main() -> None:
     dp = Dispatcher()
     dp.message.register(get_start, F.text == "/start")
     dp.message.register(get_iluha, F.text == "/iluha")
-    dp.message.register(get_furry, F.text == "/furry")
+    dp.message.register(get_furry, (F.text == "/furry") | (F.text == "/sex") | (F.text == "/horny") | (F.text == "/hentai") | (F.text == "/porno") | (F.text == "/gay") | (F.text == "/pussy"))
     dp.message.register(get_form,F.text == 'Рекламний креатив' )
     dp.message.register(get_buy,F.text == 'Закуп під ваш телеграм канал')
     dp.message.register(get_channel,F.text == 'Телеграм канал під ключ')
     dp.message.register(get_services,F.text == 'Просування ваших послуг')
+    dp.message.register(get_study,F.text == 'Навчання')
     
     dp.message.register(get_audience,StepsForm.GET_AUDIENCE)
     dp.message.register(get_theme,StepsForm.GET_THEME)
@@ -50,6 +51,8 @@ async def main() -> None:
     dp.callback_query.register(verify_channel,F.data.startswith('1'),StepsForm.VERIFIED_CHANNEL)
     dp.callback_query.register(verify_services,F.data.startswith('1'),StepsForm.VERIFIED_SERVICES)
     dp.callback_query.register(notverify,F.data.startswith('2'))
+    dp.callback_query.register(verify_buy_course,F.data.startswith('buy_course'))
+    dp.callback_query.register(verify_kero_course,F.data.startswith('creative_course'))
     
     
     await dp.start_polling(bot)

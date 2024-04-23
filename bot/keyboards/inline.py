@@ -16,8 +16,21 @@ inline_verify = InlineKeyboardMarkup(inline_keyboard=[
 startup_markup = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(
-            text='Favex I Media Group',
-            url='https://t.me/+0XxzoWMGnMZiNGQy'
+            text='FAVEX',
+            url='https://t.me/+R084uaIG0BIxZTc6'
         )
     ]
 ])
+
+study_markup = InlineKeyboardMarkup(inline_keyboard=[
+    [
+            InlineKeyboardButton(
+            text='Курс з розробки креативів',
+            callback_data='creative_course',
+        ),
+        InlineKeyboardButton(
+            text='Курс з закупу',
+            callback_data='buy_course',
+        )
+    ]
+    ])

@@ -92,3 +92,27 @@ async def verify_channel(call: CallbackQuery, state: FSMContext):
     print('Ordered creating tg channes for @',username)
     await call.answer()
     await state.clear()
+    
+
+async def verify_buy_course(call: CallbackQuery,state: FSMContext):
+    message = call.message  # Отримуємо повідомлення, пов'язане з цим запитом
+    context_data = await state.get_data()
+    username = context_data.get('username')
+    data_order = f'@{username}\r\n'\
+                 f'КУРС ПО ЗАКУПУ\r\n'
+    await message.answer(f"Очікуйте повідомлення від нашого персоналу",reply_markup=get_reply_keyboard())
+    await bot.send_message(chat_id=CHAT_ID, text=data_order)
+    print('Ordered how to buy course @',username)
+    await call.answer()
+    
+
+async def verify_kero_course(call: CallbackQuery,state: FSMContext):
+    message = call.message  # Отримуємо повідомлення, пов'язане з цим запитом
+    context_data = await state.get_data()
+    username = context_data.get('username')
+    data_order = f'@{username}\r\n'\
+                 f'КУРС ПО КРЕО\r\n'
+    await message.answer(f"Очікуйте повідомлення від нашого персоналу",reply_markup=get_reply_keyboard())
+    await bot.send_message(chat_id=CHAT_ID, text=data_order)
+    print('Ordered kreo course @',username)
+    await call.answer()
